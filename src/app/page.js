@@ -1,11 +1,16 @@
 import Kanban from "@/components/Kanban";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="">
-      <h1 className=" px-4 font-normal text-gray-700 py-4">Dashboard / <span className=" text-white px-1"> Kanban Board</span></h1>
-      <Kanban />
+    <div className=" h-[80vh] flex justify-center items-center">
+      <Button>
+        <Link href='/kanban' >
+          Kanban
+        </Link>
+      </Button>
     </div>
   );
 }

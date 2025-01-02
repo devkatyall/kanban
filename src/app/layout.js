@@ -1,6 +1,7 @@
 import Header from "@/components/ui/Header";
 import "./globals.css";
 import SideDrawer from "@/components/ui/SideDrawer";
+import { AppProvider } from "@/Context";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,16 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="dark">
-        <Header />
-          <div className=" h-[calc(100vh-80px)] grid grid-cols-6">
-            <div className=" h-full col-span-1" >
-              <SideDrawer />
-            </div>
-            <div className="h-full col-span-5 " >
-               {children}
-            </div>
-          </div>
-          
+        <AppProvider>
+          <Header />
+            {children}
+        </AppProvider>
       </body>
     </html>
   );

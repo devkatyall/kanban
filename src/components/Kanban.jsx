@@ -13,35 +13,10 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import TaskCard from "./ui/TaskCard";
+import { useAppContext } from "@/Context";
 
 export default function Kanban() {
-  const [tasks, setTasks] = useState([]);
-
-  const [columns, setColumns] = useState([
-    { id: 2231, title: "To-Do" },
-    { id: 2938, title: "In Progress" },
-    { id: 8282, title: "Completed" },
-  ]);
-
-  useEffect(() => {
-    const savedColumns = localStorage.getItem("columns");
-    const savedTasks = localStorage.getItem("tasks");
-    if (savedColumns) {
-      setColumns(JSON.parse(savedColumns)); // Parse and set the saved columns
-    }
-    if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
-    }
-  }, []);
-
-  // Save columns to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("columns", JSON.stringify(columns));
-  }, [columns]);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const { columns, tasks, setTasks, setColumns } = useAppContext();
 
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
